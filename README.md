@@ -1,146 +1,173 @@
-# SELENE: Mission Atlas and Lunar Observation Analysis
+# SELENE: Mission Atlas & Lunar Observation Analysis
 
-**NASA Space Apps Challenge 2026: Lunar Landing Site Navigator**
+**NASA Space Apps Challenge 2026: Lunar Landing Site Navigator**  
+**Team: Lunar G-Spotters**
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Node.js](https://img.shields.io/badge/Node.js-%3E%3D18.0.0-brightgreen.svg)](https://nodejs.org/)
-[![Three.js](https://img.shields.io/badge/Three.js-r186.1-blue.svg)](vendor/three/)
+### Team Contributors
+* **ADITYA HALORNEKAR**
+* **DEV KANWAR**
+* **HARSH JOSHI**
+* **KAIZAR MERCHANT**
+* **PARAM TIWARI**
+* **PRASHANT MAURYA**
 
-## Overview
+---
 
-SELENE is a web-based mission atlas and lunar observation workspace for evaluating solar illumination and direct-to-Earth (DTE) line-of-sight visibility at lunar surface coordinates, with a focus on the lunar south pole.
+## What is SELENE?
 
-### Features
+Near the lunar south pole, the Sun skims along the horizon and the Earth wobbles low in the sky. If you move your landing site by just a couple kilometers or shift your launch date by a few days, you can lose direct line of sight to Earth or end up in deep shadow behind an impact crater rim.
 
-* **3D Mission Atlas:** Global LRO WAC lunar globe with NASA LOLA display relief, a searchable Commercial Lunar Payload Services (CLPS) mission directory, published landing site pins, and coordinate handoff into the analysis workspace.
-* **Sun-Earth-Moon Orbital View:** Interactive orbital scene driven by 1,442 cached NASA JPL Horizons geometric vectors for November to December 2026.
-* **Local Horizon and Sky Compass:** 360-degree topocentric sky projection, elevation plots over time, and apparent Sun and Earth angles including light-time and aberration corrections.
-* **LOLA Terrain Screening:** Horizon obstruction profiles extracted from the NASA LRO LOLA LDEM_80S_80M V2.0 south-polar digital elevation model (80 m/pixel grid) out to 100 km range.
-* **3D Terrain Rehearsal:** Local 3D relief patch with 1x and 5x vertical scale controls, bearing selection, and radial cross-section profiles showing the highest blocking ridge along any azimuth.
-* **Comparison Notebook:** Side-by-side scenario comparison stored in browser local storage, with CSV and JSON report exports.
-* **Custom Geometry Import:** Import custom azimuth/elevation CSV tables or `.selene.json` observation files with source provenance and observer coordinates.
-* **Standalone Portable File (`SELENE.html`):** Single-file build containing all scripts, stylesheets, textures, reference ephemerides, and precomputed terrain meshes for offline use.
+We built SELENE to make this trade-off fast, visual, and mathematically inspectable. It takes real NASA JPL Horizons ephemeris data and NASA LRO LOLA elevation maps to show you exactly when, where, and why the Sun or Earth drops below the horizon. 
+
+Instead of showing pre-rendered marketing animations, SELENE calculates every line of sight step by step. You can see the actual ridge blocking your signal, inspect the raw numbers, and compare different mission landing sites side by side.
+
+---
+
+## Key Features
+
+* **3D CLPS Mission Atlas**: Browse historical Commercial Lunar Payload Services missions (including Odysseus IM-1, Athena IM-2, and Blue Ghost 1) on an interactive 3D Moon mapped with NASA LRO mosaic data. Click any landed coordinate to pull it directly into the analysis workbench.
+* **Topocentric Sky Dome & Horizon Compass**: See the apparent paths of the Sun and Earth from ground level at your chosen coordinates. Tracks real-time azimuth, elevation, and clearance margins.
+* **LOLA Terrain Skyline Screening**: Pulls from the NASA LOLA south-polar digital elevation model (80 meters per pixel) to cast 360 rays out to 100 km, calculating your true physical skyline instead of assuming a flat plane.
+* **3D Terrain Rehearsal**: Renders a local 38.4 km square 3D elevation patch around your landing site. Click anywhere on the terrain or spin the bearing ring to see the cross-section profile of the highest blocking ridge along that heading.
+* **Sun-Earth-Moon System Scene**: An interactive view driven by cached NASA Horizons orbital state vectors for November to December 2026, featuring Earth rotation and depth-tested lunar orbit tracks.
+* **Scenario Comparison Notebook**: Save multiple landing site ideas, vary horizon obstruction thresholds, and compare solar and Earth contact windows side by side. Exports clean CSV and JSON reports.
+* **Custom Coordinate & CSV Ingestion**: Bring your own observation data or custom coordinates. Use the local server to query live NASA JPL Horizons ephemerides, or import `.selene.json` and standard CSV files.
+* **Zero-Install Standalone Build**: Includes `SELENE.html` and `index.html`, which bundle all scripts, styles, textures, and reference datasets into self-contained offline files that run straight in your browser.
+
+---
+
+## A Concrete Example: Why Terrain Matters
+
+Holding the date and coordinates fixed at **89.5° S, 0.0° E** across November 2026 (720 observation hours):
+
+* **Flat-Horizon Reference**: 720.0 hours of sunlight (100%), 364.0 hours of Earth visibility (50.6%), and 364.0 hours of joint contact.
+* **With Real LOLA Terrain**: Sunlight drops to **178.0 hours** (24.7%), Earth visibility drops to **284.0 hours** (39.4%), and joint contact drops to just **134.0 hours** (18.6%). The longest continuous Earth blackout jumps from 356 hours to 392 hours.
+
+Terrain completely rewrites your mission timeline, and SELENE shows you the exact terrain ridge responsible.
+
+---
 
 ## Quick Start
 
-### Prerequisites
-* **Node.js** v18.0.0 or newer ([nodejs.org](https://nodejs.org/))
-* No external `npm install` step is needed. The local server uses the Node.js standard library and the bundled Three.js modules in `vendor/three/`.
+### Option 1: Double-Click (Offline Standalone)
+No installation required. Double-click `SELENE.html` or `index.html` in your browser. The bundled offline reference datasets, 3D globe, and terrain profiles will work immediately.
 
-### Run Locally
+### Option 2: Run the Local Server (For Live NASA Queries & Custom DEM Extraction)
 
-#### Windows Launcher
-Double-click `Start-SELENE.bat` or run in PowerShell:
+**Prerequisites**: Node.js v18.0.0 or newer. No `npm install` needed. All vendor libraries (Three.js 0.186.1) and microservices use local files and the Node standard library.
+
+**On Windows**:
+Double-click `Start-SELENE.bat`, or run in PowerShell:
 ```powershell
 .\Start-SELENE.ps1
 ```
 
-#### Node / NPM
+**Using Node / npm**:
 ```bash
 npm start
 # or:
 node server/server.cjs
 ```
-
 Then open `http://127.0.0.1:4173/` in your browser.
 
-## Standalone Offline Build (`SELENE.html`)
+---
 
-`SELENE.html` can be opened directly in a browser without running the local server. It includes the four reference observation windows, the CLPS mission catalogue, and the four precomputed south-polar terrain profiles.
+## Automated Verification & Tests
 
-To rebuild `SELENE.html` from `src/` and `styles/`:
-```bash
-npm run build:html
-```
+We wrote an extensive test suite covering coordinate math, Horizons parser verification, PDS projection logic, and terrain raycasting.
 
-## Running Tests
-
-Run the verification suite:
+Run the test suite:
 ```bash
 npm test
 # or:
 node tests/verify-all.cjs
 ```
 
-If the full LOLA DEM file (`data/terrain-source/LDEM_80S_80M.IMG`) is present locally, you can also run the DEM extractor and worker service tests:
+If you have the full 115 MB LOLA DEM raster present in `data/terrain-source/`, test the worker thread extractor:
 ```bash
 npm run test:terrain
 ```
 
-## Repository Structure
+You can also run our independent Python verification scripts:
+```bash
+python tools/test-terrain.py
+python tools/test-rehearsal.py
+```
+
+---
+
+## Project Structure
 
 ```
 selene/
-├── src/                          # Frontend application modules
-│   ├── index.html                # Main HTML entry point
-│   ├── app.js                    # State coordinator and dataset loader
-│   ├── lunar-explorer.js         # Three.js lunar globe and local sky view
-│   ├── mission-atlas.js          # CLPS mission directory and 3D globe
-│   ├── system-renderer.js        # 2D canvas Sun-Earth-Moon renderer
-│   ├── system-scene.js           # Orbital camera and timeline controls
-│   ├── terrain-ui.js             # LOLA skyline chart and metrics panel
-│   ├── terrain-rehearsal.js      # 3D terrain mesh and radial section view
-│   ├── notebook-ui.js            # Scenario comparison notebook UI
-│   └── model.js                  # Visibility interval and duration calculations
-├── styles/                       # CSS stylesheets
-├── server/                       # Local HTTP server and worker scripts
-│   ├── server.cjs                # Static file and API server (port 4173)
-│   ├── observer-service.cjs      # NASA JPL Horizons query and cache handler
-│   ├── terrain-service.cjs       # Custom-coordinate LOLA extraction service
-│   ├── terrain-extractor.cjs     # Polar stereographic DEM ray sampler
-│   └── build-html.cjs            # Standalone SELENE.html bundler
-├── data/                         # Ephemeris tables, mission catalogue, and terrain profiles
-├── assets/                       # Lunar and Earth surface textures
-├── vendor/three/                 # Bundled Three.js 0.186.1 and OrbitControls
-├── tests/                        # Automated unit and integration tests
-├── tools/                        # Python DEM processing and verification scripts
-├── legal-and-docs/               # Documentation, glossary, and data references
-├── test-data/                    # Sample observation CSV and .selene.json fixtures
-├── Start-SELENE.bat              # Windows batch launcher
-├── Start-SELENE.ps1              # PowerShell launcher
-├── SELENE.html                   # Standalone single-file offline build
-├── index.html                    # Exact SELENE.html FILE for live site preview
-└── LICENSE                       # MIT License
+├── src/                      # Frontend JavaScript modules
+│   ├── app.js                # Core app controller and dataset loader
+│   ├── explorer-math.js      # Orthonormal lunar reference frames and vector projection
+│   ├── globe.js              # Three.js 3D lunar globe with LRO texture
+│   ├── lunar-explorer.js     # Topocentric surface camera and local sky views
+│   ├── mission-atlas.js      # CLPS mission directory and 3D landing site pins
+│   ├── model.js              # Ephemeris evaluator and interval-weighted math
+│   ├── notebook-ui.js        # Multi-scenario comparison notebook
+│   ├── rehearsal-model.js    # 3D terrain patch math and ridge locator
+│   ├── system-renderer.js    # 2D canvas orbital Sun-Earth-Moon view
+│   ├── terrain-model.js      # 360-degree skyline interpolation and cutoff math
+│   └── terrain-rehearsal.js  # Interactive 3D LOLA relief renderer
+├── styles/                   # Modular CSS stylesheets
+├── server/                   # Zero-dependency local Node.js server
+│   ├── server.cjs            # HTTP static and API router (port 4173)
+│   ├── observer-service.cjs  # NASA JPL Horizons proxy with disk cache
+│   ├── terrain-service.cjs   # Thread pool and request coalescing for DEM queries
+│   ├── terrain-extractor.cjs # Polar stereographic LOLA DEM raycaster
+│   └── build-html.cjs        # Standalone single-file HTML bundler
+├── data/                     # Ephemeris tables, mission records, and terrain data
+│   └── terrain-source/       # NASA PDS label and map projection files
+├── assets/                   # LRO 2K lunar map, bump maps, and Blue Marble textures
+├── vendor/three/             # Three.js r186.1 and OrbitControls (MIT)
+├── tests/                    # 26 automated unit, integration, and load tests
+├── tools/                    # Python verification tools and numerical checks
+├── test-data/                # Sample NASA CSV ephemerides and .selene.json fixtures
+├── SELENE.html               # Compiled standalone offline single-file build
+├── index.html                # Standalone preview file
+├── Start-SELENE.bat          # 1-click Windows launcher
+└── LICENSE                   # MIT License
 ```
 
-## Custom Coordinate Terrain Data (Optional)
+---
 
-The four reference south-polar terrain profiles are precomputed in `data/terrain-horizons.json` and `data/terrain-rehearsal-*.json`.
+## Custom Terrain DEM Setup (Optional)
 
-To compute terrain skylines for arbitrary custom south-polar coordinates via the local server:
-1. Download the official NASA LOLA south-polar DEM file:
-   * File: [LDEM_80S_80M.IMG](https://imbrium.mit.edu/DATA/LOLA_GDR/POLAR/IMG/LDEM_80S_80M.IMG) (115.5 MB)
-   * SHA-256: `e6591eeea35402ca5e124ca00f5bf0774381a2d4fa919144b455d82b8ff65fdc`
-2. Place `LDEM_80S_80M.IMG` in `data/terrain-source/` next to `LDEM_80S_80M.LBL`.
-3. Restart `node server/server.cjs`.
+The repository comes pre-bundled with 4 reference south-polar terrain profiles (`data/terrain-horizons.json` and `data/terrain-rehearsal-*.json`).
 
-Note: `LDEM_80S_80M.IMG` exceeds GitHub's 100 MB per-file limit and is listed in `.gitignore`. The label and catalog files are tracked in `data/terrain-source/`.
+To calculate custom skylines for any arbitrary coordinate in the south-polar region:
+1. Download the official NASA LOLA south-polar DEM grid:
+   * **URL**: [LDEM_80S_80M.IMG](https://imbrium.mit.edu/DATA/LOLA_GDR/POLAR/IMG/LDEM_80S_80M.IMG) (115.5 MB)
+   * **SHA-256**: `e6591eeea35402ca5e124ca00f5bf0774381a2d4fa919144b455d82b8ff65fdc`
+2. Drop `LDEM_80S_80M.IMG` into `data/terrain-source/` beside `LDEM_80S_80M.LBL`.
+3. Start the local server (`npm start`).
 
-## Conventions and Scope
+*(Note: `LDEM_80S_80M.IMG` is excluded in `.gitignore` so you do not accidentally exceed GitHub's 100 MB file limit).*
 
-* **Coordinates:** Planetocentric latitude (positive North) and longitude (positive East) in the lunar mean-Earth/polar axis (DE421) frame.
-* **Reference Sphere:** Lunar radius $R = 1,737,400	ext{ m}$, with the observer positioned $2	ext{ m}$ above the local surface.
-* **Ephemerides:** Apparent airless body-center azimuth and elevation from NASA JPL Horizons.
-* **Scope:** Calculations evaluate geometric line-of-sight visibility. They do not model solar disk limb darkening, cast surface shadows, power generation, thermal loads, or RF link budgets.
+---
 
-## Data Sources and Credits
+## Technical Notes & Limitations
 
-* **NASA / JPL Horizons:** Solar System Dynamics Group ([ssd.jpl.nasa.gov](https://ssd.jpl.nasa.gov/))
-* **NASA / GSFC LRO LOLA Team:** Lunar Orbiter Laser Altimeter ([imbrium.mit.edu](https://imbrium.mit.edu/))
-* **NASA SVS:** Scientific Visualization Studio CGI Moon Kit ([svs.gsfc.nasa.gov/4720](https://svs.gsfc.nasa.gov/4720/))
-* **NASA Earth Observatory:** Blue Marble 2002 mosaic ([earthobservatory.nasa.gov](https://earthobservatory.nasa.gov/))
-* **Three.js:** MIT License ([github.com/mrdoob/three.js](https://github.com/mrdoob/three.js))
+* **Coordinate Frame**: Planetocentric latitude (positive North) and longitude (positive East) in the lunar mean-Earth/polar axis (DE421) frame. Reference lunar radius is 1,737,400 meters, with the local observer placed 2 meters above ground elevation.
+* **Duration Calculations**: Durations strictly evaluate left-endpoint interval states ($[t_i, t_{i+1})$). We do not invent imaginary crossing points between discrete sample steps.
+* **Engineering Scope**: SELENE calculates geometric line-of-sight visibility for celestial body centers. It is an early-stage screening tool and does not calculate solar cell electrical power, radio frequency link budgets, or thermal transfer.
+
+---
+
+## NASA Data Sources & Credits
+
+* **NASA JPL Horizons**: Apparent airless topocentric ephemerides and geometric state vectors ([ssd.jpl.nasa.gov](https://ssd.jpl.nasa.gov/))
+* **NASA LRO LOLA Science Team**: South Polar Digital Elevation Model (LDEM_80S_80M V2.0) ([imbrium.mit.edu](https://imbrium.mit.edu/))
+* **NASA GSFC Scientific Visualization Studio**: CGI Moon Kit visual mosaic and displacement maps ([svs.gsfc.nasa.gov/4720](https://svs.gsfc.nasa.gov/4720/))
+* **NASA Earth Observatory**: Global Blue Marble texture ([earthobservatory.nasa.gov](https://earthobservatory.nasa.gov/))
+* **NASA NSSDCA**: Sourced coordinates and mission reports for landed CLPS spacecraft ([nssdc.gsfc.nasa.gov](https://nssdc.gsfc.nasa.gov/))
+* **Three.js**: WebGL 3D rendering library under MIT license ([github.com/mrdoob/three.js](https://github.com/mrdoob/three.js))
+
+---
 
 ## License
 
-Released under the [MIT License](LICENSE).
-
-
-# Contributors
-
-- ADITYA HALORNEKAR
-- DEV KANWAR
-- HARSH JOSHI
-- KAIZAR MERCHANT
-- PARAM TIWARI
-- PRASHANT MAURYA
+Original code and documentation are released under the [MIT License](LICENSE).
