@@ -99,6 +99,7 @@ selene/
 ├── Start-SELENE.bat              # Windows batch launcher
 ├── Start-SELENE.ps1              # PowerShell launcher
 ├── SELENE.html                   # Standalone single-file offline build
+├── index.html                    # Exact SELENE.html FILE for live site preview
 └── LICENSE                       # MIT License
 ```
 
