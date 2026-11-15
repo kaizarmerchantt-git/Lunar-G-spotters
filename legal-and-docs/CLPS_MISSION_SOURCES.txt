@@ -1,0 +1,54 @@
+SELENE mission catalogue sources / checked 31 October 2026
+
+Scope: four compact records. Only official NASA sources were used for catalogue
+claims. This catalogue does not contain ephemerides or operational certification.
+statusDate records the source report date, or an explicitly stated mission end
+date; checkedUtc records the date of this source review, not a live-status feed.
+
+Actual landing coordinates (all three landed missions)
+NASA NSSDCA Table of Anthropogenic Impacts and Spacecraft on the Moon:
+https://nssdc.gsfc.nasa.gov/planetary/lunar/lunar_artifact_impacts.html
+Odysseus IM-1: -80.13 latitude, +1.44 longitude; landed 22 February 2024.
+IM-2: -84.7906 latitude, +29.1957 longitude; landed 6 March 2025.
+Blue Ghost 1: +18.562 latitude, +61.810 longitude; landed 2 March 2025.
+The table links these location entries to LROC observations. Preserve its
+precision; it does not specify a full geodetic frame/uncertainty statement.
+Do not confuse the IM-1 target -80.297,+1.2613 in preflight NASA material with
+the landed location. The IM-2 PDS record gives a rounded -84.79,+29.20 location.
+
+IM-1 mission outcome, NASA report 1 March 2024:
+https://www.nasa.gov/missions/artemis/clps/nasa-collects-first-surface-science-in-decades-via-commercial-moon-mission/
+NASA reported instruments ceased operations seven days after the 22 February
+landing. Payload overview:
+https://science.nasa.gov/lunar-science/clps-deliveries/to2-im/
+
+IM-2 outcome, NASA report 25 March 2025:
+https://www.nasa.gov/image-article/nasas-lunar-reconnaissance-orbiter-views-im-2-on-moons-surface/
+NASA describes early end of mission on 7 March. Payload goals:
+https://science.nasa.gov/lunar-science/clps-deliveries/prime-1-im/
+
+Blue Ghost 1 conclusion, PDS mission context:
+https://pds.nasa.gov/ds-view/pds/viewContext.jsp?identifier=urn:nasa:pds:context:investigation:mission.clps_to_19d&version=1.0
+The surface mission concluded 16 March 2025. Supporting NASA end-of-mission page:
+https://www.nasa.gov/news-release/nasa-firefly-invite-media-to-discuss-end-of-blue-ghost-moon-mission/
+Payload overview:
+https://science.nasa.gov/lunar-science/clps-deliveries/to19d-firefly/
+
+Blue Ghost 2: NASA August 2026 update, region and planning status only:
+https://www.nasa.gov/missions/moon-base/nasa-provides-updates-on-moon-base-cargo-landers-tech-demonstrations/
+No numeric point was verified in this review. Do not plot an invented exact site.
+Older CLPS provider text still refers to two payloads/2026 launch, while the
+August update describes three NASA payloads. No launch date is asserted here.
+
+Image-page candidates if adding photographic context (not downloaded):
+https://www.nasa.gov/image-article/nasas-lunar-reconnaissance-orbiter-views-im-2-on-moons-surface/
+https://www.nasa.gov/image-article/nasas-lunar-reconnaissance-orbiter-views-blue-ghost-on-moons-surface/
+Credit on both image pages: NASA/Goddard/Arizona State University. These are
+orbital context views, not spacecraft cutouts or a certified terrain model.
+
+Integration boundaries
+Do not associate these mission coordinates with the existing hypothetical
+89.5 S reference study. Request/validate new matching observer data for analysis.
+Do not describe a later what-if date as replay of historical surface operations.
+Archived mission objectives do not prove payload success. Marker sizes and
+lander silhouettes, if drawn, must be explicitly illustrative.

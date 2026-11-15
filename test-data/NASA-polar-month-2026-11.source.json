@@ -1,0 +1,20 @@
+{
+  "name": "Polar month \u00b7 89.5\u00b0 S, 0\u00b0 E",
+  "lat": -89.5,
+  "lon": 0,
+  "urls": [
+    "https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=%2710%27&OBJ_DATA=%27NO%27&MAKE_EPHEM=%27YES%27&EPHEM_TYPE=%27OBSERVER%27&CENTER=%27coord%40301%27&COORD_TYPE=%27GEODETIC%27&SITE_COORD=%270%2C-89.5%2C0%27&START_TIME=%272026-11-01+00%3A00%27&STOP_TIME=%272026-12-01+00%3A00%27&STEP_SIZE=%2760+min%27&QUANTITIES=%274%27&CSV_FORMAT=%27YES%27&TIME_DIGITS=%27SECONDS%27&TIME_TYPE=%27UT%27&APPARENT=%27AIRLESS%27&EXTRA_PREC=%27YES%27",
+    "https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=%27399%27&OBJ_DATA=%27NO%27&MAKE_EPHEM=%27YES%27&EPHEM_TYPE=%27OBSERVER%27&CENTER=%27coord%40301%27&COORD_TYPE=%27GEODETIC%27&SITE_COORD=%270%2C-89.5%2C0%27&START_TIME=%272026-11-01+00%3A00%27&STOP_TIME=%272026-12-01+00%3A00%27&STEP_SIZE=%2760+min%27&QUANTITIES=%274%27&CSV_FORMAT=%27YES%27&TIME_DIGITS=%27SECONDS%27&TIME_TYPE=%27UT%27&APPARENT=%27AIRLESS%27&EXTRA_PREC=%27YES%27"
+  ],
+  "raw_sha256": {
+    "3-sun.json": "d849e14965ed340ad45915250315dd08ba61e7b2f19db38d363107bccc66d0d8",
+    "3-earth.json": "f062ae94efd722c3e24bc26b212b8adbe1da7628a6cfb42213e39f9aac912cad"
+  },
+  "retrieved_utc": "2026-10-29T16:21:29.957Z",
+  "source": "NASA/JPL Horizons live query; target, observer, frame, epochs and angle ranges checked.",
+  "featured": true,
+  "conventions": "Observer tables, quantity 4: apparent airless azimuth/elevation; lunar geodetic coordinates, east longitude, altitude 0 km above reference surface; UT (UTC for these dates). No terrain screening. Coordinates are reference points, not designated landing sites.",
+  "provider": "NASA/JPL Horizons",
+  "csv_sha256": "86c03213b98c1ff78ff5914689184daf232a3a2ad3f1660093f77aab0a0c692a",
+  "note": "Exact values from retained NASA/JPL observer table, not synthetic; CSV import is still marked user-supplied by the app."
+}

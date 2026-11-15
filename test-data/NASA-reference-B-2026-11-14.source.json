@@ -1,0 +1,17 @@
+{
+  "name": "Reference B \u00b7 88.5\u00b0 S, 90\u00b0 E",
+  "lon": 90,
+  "lat": -88.5,
+  "urls": [
+    "https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=%2710%27&OBJ_DATA=%27NO%27&MAKE_EPHEM=%27YES%27&EPHEM_TYPE=%27OBSERVER%27&CENTER=%27coord%40301%27&COORD_TYPE=%27GEODETIC%27&SITE_COORD=%2790%2C-88.5%2C0%27&START_TIME=%272026-11-14+00%3A00%27&STOP_TIME=%272026-11-17+00%3A00%27&STEP_SIZE=%271+h%27&QUANTITIES=%274%27&CSV_FORMAT=%27YES%27&TIME_DIGITS=%27SECONDS%27&TIME_TYPE=%27UT%27&APPARENT=%27AIRLESS%27&EXTRA_PREC=%27YES%27",
+    "https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=%27399%27&OBJ_DATA=%27NO%27&MAKE_EPHEM=%27YES%27&EPHEM_TYPE=%27OBSERVER%27&CENTER=%27coord%40301%27&COORD_TYPE=%27GEODETIC%27&SITE_COORD=%2790%2C-88.5%2C0%27&START_TIME=%272026-11-14+00%3A00%27&STOP_TIME=%272026-11-17+00%3A00%27&STEP_SIZE=%271+h%27&QUANTITIES=%274%27&CSV_FORMAT=%27YES%27&TIME_DIGITS=%27SECONDS%27&TIME_TYPE=%27UT%27&APPARENT=%27AIRLESS%27&EXTRA_PREC=%27YES%27"
+  ],
+  "raw_sha256": {
+    "1-sun.json": "a16f993338160138a28efd1ae882f34d63439a23f9acf3db8c7cebeeb4a4c076",
+    "1-earth.json": "32474a9b6dc38b3c0d74cc9f95cf6221c8d4fdc907033f4ffed637bfc426266c"
+  },
+  "provider": "NASA/JPL Horizons",
+  "conventions": "Observer tables, quantity 4: apparent airless azimuth/elevation; lunar geodetic coordinates, east longitude, altitude 0 km above reference surface; UT (UTC for these dates). No terrain screening. Coordinates are reference points, not designated landing sites.",
+  "csv_sha256": "b3121f4d64ec57cbe1eb967c46081383dacc1f2b62a3a7751b1e44b53a57942c",
+  "note": "Exact values from retained NASA/JPL observer table, not synthetic; CSV import is still marked user-supplied by the app."
+}

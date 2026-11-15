@@ -1,0 +1,30 @@
+SELENE / third-party notices
+
+The project-level MIT license applies to original project code/documentation
+to the extent applicable rights are held. It does not relicense external
+assets, datasets, software, marks or branding.
+
+Three.js 0.186.1, including OrbitControls: MIT. Preserve vendor/three/LICENSE
+and vendor/three/SOURCE.json. Upstream: https://github.com/mrdoob/three.js
+
+NASA/JPL Horizons: retained source responses and derived observer/vector data.
+https://ssd.jpl.nasa.gov/horizons/ and https://ssd.jpl.nasa.gov/horizons/manual.html
+Credit NASA/JPL. Source query records and conventions remain with the data.
+
+NASA LRO LOLA / PDS LDEM_80S_80M V2.0: source terrain; retain dataset attribution,
+label and hashes. Derived profiles/meshes are not independently surveyed data.
+https://imbrium.mit.edu/DATA/LOLA_GDR/POLAR/IMG/LDEM_80S_80M.LBL
+https://imbrium.mit.edu/CATALOG/DSMAP_POLAR.CAT
+
+NASA Goddard SVS CGI Moon Kit, visualization 4720, Ernie Wright: lunar mosaic
+and display bump image. Blue Marble global texture, SVS 2915: NASA/GSFC/SVS;
+data courtesy Reto Stockli and NASA Earth Observatory; Eric Sokolowsky.
+Preserve assets/SOURCES.txt, which provides exact asset URLs and file hashes.
+No general project license grants rights to NASA logos, insignia, identifiers,
+third-party content on NASA sites or personal likenesses. No NASA endorsement.
+https://www.nasa.gov/nasa-brand-center/images-and-media/
+
+The demo screenshots show SELENE rendering credited source imagery. They are
+not photographs of simulated future events or independently validated terrain.
+Font rendering uses Segoe UI/Arial/Helvetica where available. Font files are
+not distributed as standalone assets; PDF font subsets may be embedded.

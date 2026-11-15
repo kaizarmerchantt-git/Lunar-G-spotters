@@ -1,0 +1,219 @@
+/* Taste / framed-sheet: quiet chalk frame, one lunar canvas, color spent on data. */
+/* Only the workspace scrolls. `hidden` still lets focus/scrollIntoView move
+   the document and push the app header outside the viewport. */
+html:has(body.explorer-mode) { overflow:clip; }
+.explorer-mode { padding:0; background:#e9e8e3; overflow:clip; color:#202522; }
+.explorer-mode #lunar-explorer { position:fixed; inset:0; }
+.explorer-mode>header,.explorer-mode>.console-rail,.explorer-mode>.skip-link,.explorer-mode main>:not(#lunar-explorer){display:none!important}
+.explorer-mode main{margin:0;padding:0;max-width:none;width:100%}
+#lunar-explorer{--ex-ink:#202522;--ex-muted:#626963;--ex-line:#dedfd9;--ex-sun:#98621e;--ex-earth:#376f82;--ex-bg:#f9f9f5;--ex-font:'Segoe UI Variable Text','Segoe UI',sans-serif;color-scheme:light;height:100dvh;display:grid;grid-template-rows:64px minmax(0,1fr) 28px;background:#e9e8e3;color:var(--ex-ink);font:13px/1.5 var(--ex-font);text-align:left}
+#lunar-explorer[hidden]{display:none!important}
+#lunar-explorer *{box-sizing:border-box}
+#lunar-explorer p{color:var(--ex-muted)}
+#lunar-explorer h1,#lunar-explorer h2,#lunar-explorer strong{font-family:var(--ex-font);letter-spacing:0}
+#lunar-explorer button{width:auto;min-height:40px;padding:8px 12px;margin:0;border-radius:5px;font:500 12px var(--ex-font);background:#eeefea;border:1px solid transparent;color:var(--ex-ink);transition:background 150ms,transform 250ms cubic-bezier(.22,1,.36,1);filter:none}
+#lunar-explorer button:hover:not(:disabled){background:#dfe3dc;color:#17201b;filter:none}
+#lunar-explorer button:disabled{cursor:default;opacity:.45}
+#lunar-explorer button:focus-visible,#lunar-explorer input:focus-visible,#lunar-explorer select:focus-visible{outline:2px solid #467a80;outline-offset:3px}
+#lunar-explorer input,#lunar-explorer select{font:12px var(--ex-font);color:var(--ex-ink);background:#fff;border:1px solid #d1d6ce;border-radius:4px;min-height:36px;padding:5px 8px;width:100%;margin:0;accent-color:#424f43}
+#lunar-explorer input[type=range]{padding:0;min-height:24px;height:24px;border:0;background:transparent}
+#lunar-explorer label{font:11px var(--ex-font);margin:0;color:var(--ex-muted)}
+#lunar-explorer output{font:11px var(--ex-font);color:var(--ex-ink);float:right}
+#lunar-explorer .ex-header{display:flex;align-items:center;justify-content:initial;gap:24px;background:transparent;padding:8px 22px;border:0;min-width:0;height:64px}
+.ex-brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:#29342d!important;white-space:nowrap}
+.ex-brand svg{width:32px;height:32px;flex-shrink:0}
+.ex-brand>span{font-size:18px;font-weight:650;letter-spacing:3px}
+.ex-brand>span>span{display:block;font-size:10px;letter-spacing:0;font-weight:400;color:#6c746b}
+.ex-build{margin-left:auto;color:#555e55;font-size:11px;white-space:nowrap}.ex-build span{margin-left:14px;color:#5e695a}
+#lunar-explorer .ex-text-button{background:transparent;color:#586253;padding:8px 0;white-space:nowrap}
+.ex-body{display:grid;grid-template-columns:220px minmax(0,1fr);min-height:0}
+#lunar-explorer .ex-sites{padding:22px 18px;border:0;background:transparent;min-width:0;overflow:auto}
+.ex-panel-heading{display:flex;align-items:center;gap:10px}.ex-panel-heading>span{color:#5e695a;font:10px Consolas,monospace}
+#lunar-explorer .ex-panel-heading h2{font-size:13px;font-weight:600;margin:0;line-height:1.5}
+.ex-intro{font-size:11px;line-height:1.8;margin:12px 0 20px}
+#ex-site-list{display:grid;gap:6px}
+#lunar-explorer .ex-site-button{display:flex;align-items:center;text-align:left;width:100%;padding:12px 10px;gap:10px;background:transparent;border:1px solid #d4d7ce;border-radius:5px}
+#lunar-explorer .ex-site-button[aria-pressed=true]{background:#fff;border-color:#9ca798;box-shadow:none}
+.ex-site-code{display:grid;place-content:center;border:1px solid #c4ccbf;width:26px;height:26px;border-radius:50%;font-size:11px;flex-shrink:0}
+.ex-site-button strong{display:block;font-size:12px;font-weight:550}.ex-site-button small{display:block;font-size:10px;color:#5e695a;margin-top:2px}
+.ex-window{padding:22px 0;border-bottom:1px solid #d6dbd0;margin-bottom:20px}.ex-window>strong{display:block;font-size:16px;font-weight:500;margin:7px 0}.ex-window p{font-size:11px;line-height:1.8;margin:7px 0 15px}.ex-window label{display:block;margin-bottom:5px!important}
+.ex-small-label{display:block;font-size:10px;font-weight:500;color:#697363;letter-spacing:.3px}
+#lunar-explorer .ex-outline-button{border:1px solid #cbd2c5;background:transparent;white-space:nowrap}
+.ex-side-note{font-size:10px;line-height:1.8;color:#5e695a;margin-top:22px}
+.ex-workspace{margin:0 8px 8px 0;padding:18px 22px;border:1px solid #d7dbd1;border-radius:16px;background:var(--ex-bg);display:grid;grid-template-rows:auto minmax(310px,1fr) auto auto;gap:14px;overflow:auto;min-height:0;align-content:start}
+.ex-question{display:flex;align-items:center;justify-content:space-between;gap:15px}
+#lunar-explorer .ex-question h1{font-size:26px;font-weight:600;line-height:1.2;margin:4px 0 6px;letter-spacing:-.7px}
+.ex-question p{margin:0;font-size:12px}
+.ex-scene-wrap{position:relative;min-height:310px;background:#0b1015;border-radius:8px;overflow:hidden}
+#ex-scene{display:block;width:100%;height:100%;min-height:310px;touch-action:none;cursor:grab;outline-offset:-4px;transition:opacity 170ms ease}
+#ex-scene:active{cursor:grabbing}
+.ex-scene-toolbar{position:absolute;top:14px;left:16px;right:16px;display:flex;justify-content:space-between;align-items:center;gap:10px;z-index:2}
+.ex-scene-tabs{display:flex;border-bottom:1px solid #ffffff33;gap:8px}
+#lunar-explorer .ex-scene-tabs button{border-radius:0;background:transparent;color:#a6afb1;border:0;border-bottom:2px solid transparent;font-weight:400;padding:7px 4px;min-height:36px}
+#lunar-explorer .ex-scene-tabs button[aria-pressed=true]{color:#f0f2ed;border-bottom-color:#d5e2d1}
+#lunar-explorer .ex-scene-tabs button:hover:not(:disabled){background:#ffffff12;color:#f0f2ed}
+#lunar-explorer .ex-on-dark{color:#bdc4c6;background:#10171dbb;border:1px solid #a5b2bb36;font-size:10px;min-height:34px}
+#lunar-explorer .ex-on-dark:hover{background:#2b353b;color:#fff}
+.ex-scene-bottom{position:absolute;bottom:40px;left:18px;right:18px;display:flex;justify-content:space-between;align-items:center;gap:14px;pointer-events:none}
+.ex-scene-bottom>div{padding:8px 10px;background:#0b1015ad;border-radius:3px}
+.ex-scene-bottom span{display:block;color:#a6b6b9;font-size:10px}.ex-scene-bottom strong{display:block;color:#e3e9e4;font-size:13px;font-weight:400;margin-top:3px}
+#lunar-explorer #ex-descend{pointer-events:auto;background:#e5e9de;border:1px solid #d4dbcb;color:#263026;min-height:42px;padding:9px 15px}
+#lunar-explorer #ex-descend:hover{background:#fff}
+#lunar-explorer .ex-render-note{position:absolute;bottom:10px;left:18px;right:18px;font-size:9px;margin:0;color:#97a6aa;line-height:1.4;pointer-events:none}
+.ex-loading{position:absolute;inset:0;display:grid;place-content:center;background:#0b1015;color:#bdc9cc;font-size:12px;z-index:3;pointer-events:none}
+.ex-reading-strip{display:grid;grid-template-columns:1fr 1fr 1fr 1.2fr;gap:16px;padding:2px 0 6px;border-bottom:1px solid var(--ex-line)}
+.ex-reading-strip>div{min-width:0}.ex-reading-strip span{display:block;font-size:10px;color:#6e7767}.ex-reading-strip strong{display:block;font-size:25px;font-weight:400;line-height:1.3;font-variant-numeric:tabular-nums;margin:3px 0;color:var(--ex-ink)}
+#ex-sun-value{color:var(--ex-sun)}#ex-earth-value{color:var(--ex-earth)}
+.ex-reading-strip small{font-size:10px;color:#5e695a;line-height:1.4;display:block}
+.ex-threshold{display:grid;grid-template-columns:1fr;gap:0}.ex-threshold label{display:block}.ex-threshold input[type=range]{height:20px!important;min-height:20px!important}
+.ex-timeline{padding:0 0 4px;min-width:0}
+.ex-timeline-head{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:3px}.ex-timeline-head strong{font:13px Consolas,monospace;display:block;margin-top:3px}
+.ex-playback{display:flex;align-items:center;gap:5px}.ex-playback select{width:76px!important;font-size:10px!important;min-height:34px!important;background:transparent!important;padding:5px!important}
+#lunar-explorer #ex-play{background:#29372d;color:#f2f4ec;border-color:#29372d;min-width:120px}
+#lunar-explorer #ex-prev,#lunar-explorer #ex-next{font-size:18px;width:34px;min-height:34px;padding:0;background:transparent}
+.ex-track-labels{display:flex;justify-content:space-between;color:#5e695a;font:9px Consolas,monospace;margin-top:-3px}
+.ex-lanes{display:grid;grid-template-columns:125px minmax(0,1fr);align-items:center;gap:6px 12px;margin-top:12px}
+.ex-lanes>span{font-size:10px;color:#737b69}.ex-lane{position:relative;height:10px;background:#e7e9e0;border:1px solid #d8ddcf;border-radius:2px;cursor:crosshair;overflow:hidden}
+.ex-lane i{position:absolute;top:0;bottom:0;background:#ae8749}.ex-lane b{position:absolute;top:-1px;bottom:-1px;width:2px;background:#293e32;z-index:1}
+#ex-earth-lane i{background:#6b9ba5}#ex-both-lane i{background:#56775b}
+#lunar-explorer .ex-timeline-note{font-size:9px;color:#5e695a;margin:8px 0 0}
+.ex-footer{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:0 18px;font-size:9px;color:#5e695a;background:transparent;border:0;letter-spacing:0;line-height:1.3}
+.ex-pinned{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border:1px solid #cad5c1;border-radius:5px;background:#f0f4eb;font-size:11px;gap:15px}.ex-pinned>div{display:grid;gap:3px}.ex-pinned strong{font-weight:550}.ex-pinned button{flex-shrink:0}
+.ex-comparison{padding-top:15px;border-top:1px solid var(--ex-line)}.ex-table-scroll{overflow:auto}
+#lunar-explorer table{width:100%;border-collapse:collapse;font-size:11px;margin:12px 0 0;background:transparent}
+#lunar-explorer th,#lunar-explorer td{padding:10px 8px;color:var(--ex-ink);border-bottom:1px solid var(--ex-line);font:11px var(--ex-font);text-align:right;background:transparent}
+#lunar-explorer th:first-child,#lunar-explorer td:first-child{text-align:left}
+#lunar-explorer th{color:#5e695a;font-weight:500;font-size:10px}
+.ex-comparison p{font-size:10px}
+#ex-body-labels{pointer-events:none;position:absolute;inset:0;overflow:hidden}
+#ex-body-labels>span{position:absolute;font-size:10px;line-height:1.5;color:#e0e6dd;background:#0b111bc9;padding:3px 7px;border-radius:3px;white-space:nowrap}
+#ex-sun-tag{border-left:2px solid #caac79}#ex-earth-tag{border-left:2px solid #79b3c0}
+#ex-body-labels>span.ex-below{color:#adc3c5;border-left-style:dashed}
+.ex-horizon-overlay{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:hidden}
+.ex-horizon-overlay path{stroke:#c8d1c18c;stroke-width:1;stroke-dasharray:5 6;fill:none}
+.ex-clearance-tag{position:absolute;left:16px;color:#a8b8b0;font:9px 'Segoe UI',sans-serif;pointer-events:none;background:#0d1716c2;padding:2px 4px}
+.ex-sky-actions{display:flex;gap:5px;position:absolute;top:58px;left:18px;z-index:2;align-items:center}
+.ex-sky-actions span{font:9px Consolas,monospace;color:#bcc7c6;padding-left:8px}
+#lunar-explorer .ex-sky-actions button{font-size:10px;background:#152027c9;color:#bcc9c9;border:1px solid #c2d0d326;min-height:30px;padding:4px 8px}
+#ex-method{color:var(--ex-ink);background:var(--ex-bg);border:1px solid #c6cfc0;border-radius:12px;max-width:920px;width:calc(100% - 40px);max-height:85dvh;padding:25px}
+#ex-method::backdrop{background:#10171388}
+.ex-dialog-heading{display:flex;justify-content:space-between;align-items:center;gap:16px}.ex-dialog-heading h2{font-size:22px;margin:0}
+#ex-method .method{padding:20px 0}#ex-method .method>h2,#ex-method .method>.section-label{display:none}
+#ex-method .method h3{font-size:13px;color:#303c2e}#ex-method .method p{font:12px/1.8 var(--ex-font);color:#68745f}
+#ex-method a{color:#376f82}#ex-method pre{font:10px/1.7 Consolas,monospace;background:#edefe8;color:#3a4935;border:1px solid #d6decd;white-space:pre-wrap;overflow-wrap:anywhere;max-height:260px;overflow:auto}
+#ex-toast{position:fixed;bottom:36px;left:50%;transform:translate(-50%,12px);opacity:0;pointer-events:none;padding:12px 18px;background:#293b2b;color:#edf3e5;border-radius:5px;z-index:30;font-size:12px;max-width:90vw;transition:opacity 200ms,transform 250ms cubic-bezier(.22,1,.36,1)}
+#ex-toast.is-visible{opacity:1;transform:translate(-50%,0)}
+#ex-return{position:fixed;top:10px;right:10px;z-index:30;width:auto}
+@media(max-width:1100px){.ex-body{grid-template-columns:190px minmax(0,1fr)}.ex-workspace{padding:16px;gap:12px}.ex-reading-strip{gap:10px}.ex-reading-strip strong{font-size:22px}.ex-build{display:none}#lunar-explorer .ex-header{gap:18px}.ex-header #ex-evidence{margin-left:auto}.ex-lanes{grid-template-columns:105px minmax(0,1fr)}}
+@media(max-width:760px){#lunar-explorer{grid-template-rows:66px minmax(0,1fr) 28px}.ex-body{display:block;overflow:auto}.ex-workspace{overflow:visible;height:auto;display:flex;flex-direction:column;margin:0 8px 8px;padding:14px;border-radius:12px}.ex-scene-wrap,#ex-scene{height:380px;min-height:380px;flex-shrink:0}#lunar-explorer .ex-sites{padding:12px 14px;overflow:visible}.ex-sites>.ex-panel-heading,.ex-intro,.ex-side-note{display:none}.ex-window{display:flex;align-items:center;gap:10px;padding:8px 0;margin:4px 0 0;border:0;flex-wrap:wrap}.ex-window .ex-small-label,.ex-window p,.ex-window label{display:none}.ex-window>strong{font-size:11px;font-weight:400;margin:0}.ex-window select{width:130px!important;margin-left:auto!important}.ex-sites>#ex-compare{width:100%;min-height:32px;font-size:10px}#ex-site-list{display:flex;gap:6px}.ex-site-button{flex:1;min-width:0}#lunar-explorer .ex-site-button{padding:8px 6px;gap:6px}.ex-site-code{width:22px;height:22px;font-size:10px}.ex-site-button strong{font-size:10px}.ex-site-button small{font-size:8px;line-height:1.3}.ex-question{gap:8px}#lunar-explorer .ex-question h1{font-size:24px}.ex-question #ex-save{font-size:10px;padding:6px}.ex-question p{font-size:10px}.ex-reading-strip{grid-template-columns:1fr 1fr;gap:12px;padding-bottom:10px}.ex-reading-strip strong{font-size:26px}.ex-timeline-head{align-items:flex-start;flex-wrap:wrap}.ex-timeline-head strong{font-size:12px}.ex-playback{width:100%;justify-content:space-between}.ex-playback #ex-play{flex:1}.ex-lanes{grid-template-columns:105px minmax(0,1fr)}.ex-footer{font-size:8px;padding:0 12px}.ex-footer>span:nth-child(2){display:none}#lunar-explorer .ex-header{padding:8px 14px;gap:14px}.ex-brand>span{font-size:16px;letter-spacing:2px}.ex-brand>span>span{font-size:8px}.ex-brand svg{width:25px;height:25px}.ex-header #ex-legacy{display:none}#lunar-explorer #ex-evidence{font-size:10px}.ex-scene-toolbar{left:12px;right:12px;gap:8px}.ex-scene-tabs{gap:5px}#lunar-explorer .ex-scene-tabs button{font-size:10px}#lunar-explorer #ex-reset-camera{font-size:9px;padding:5px 7px}.ex-scene-bottom{left:12px;right:12px;bottom:60px;gap:8px}.ex-scene-bottom strong{font-size:11px}.ex-scene-bottom span{font-size:9px}#lunar-explorer #ex-descend{font-size:10px;max-width:130px;padding:8px}.ex-render-note{left:12px!important;right:12px!important;bottom:12px!important}.ex-scene-bottom>div{max-width:52%}.ex-sky-actions{left:12px;gap:4px}.ex-sky-actions span{font-size:8px;padding-left:2px}}
+@media(prefers-reduced-motion:reduce){#lunar-explorer *,#lunar-explorer *::before,#lunar-explorer *::after{transition:none!important;animation:none!important}}
+@media(max-width:760px){#lunar-explorer button{min-height:44px}#lunar-explorer #ex-prev,#lunar-explorer #ex-next{min-height:44px;width:44px}#lunar-explorer .ex-scene-tabs button,#lunar-explorer #ex-reset-camera,#lunar-explorer .ex-sky-actions button{min-height:40px}.ex-sky-actions{top:64px}}
+
+#lunar-explorer .ex-dialog-heading button{min-width:44px}
+
+/* Analysis workspace: one instrument, with linked geometry and evidence. */
+.explorer-mode{background:#101d29}
+#lunar-explorer{--ex-ink:#182733;--ex-muted:#526370;--ex-line:#d4dde2;--ex-sun:#95621b;--ex-earth:#216b87;--ex-bg:#f3f6f7;grid-template-rows:60px minmax(0,1fr) 26px;background:#101d29}
+#lunar-explorer .ex-header{height:60px;padding:8px 24px;gap:24px;color:#ecf2f5}
+#lunar-explorer .ex-brand{color:#f0f4f6!important}
+.ex-brand>span{letter-spacing:4px;font-size:17px}.ex-brand>span>span{color:#9bafbe;font-size:10px;letter-spacing:.25px}
+.ex-build{color:#91a7b8;font:10px Consolas,monospace;letter-spacing:1px}
+#lunar-explorer .ex-text-button{color:#b9cad5;font-size:11px}
+#lunar-explorer .ex-text-button:hover{background:transparent;color:#fff}
+.ex-body{grid-template-columns:208px minmax(0,1fr)}
+#lunar-explorer .ex-sites{padding:20px 16px;color:#dae4eb}
+#lunar-explorer .ex-sites h2{font-size:12px;color:#e0e9ef;font-weight:500}
+.ex-sites .ex-panel-heading>span{display:none}
+#lunar-explorer .ex-intro{color:#9fb2c1;line-height:1.65;font-size:11px;margin:10px 0 18px}
+#lunar-explorer .ex-site-button{border:1px solid #334351;background:#14232f;padding:12px 10px;border-radius:3px;gap:11px;color:#cad8e2;min-height:62px}
+#lunar-explorer .ex-site-button:hover:not(:disabled){background:#243744;color:#fff}
+#lunar-explorer .ex-site-button[aria-pressed=true]{background:#263d4c;border-color:#6a93a8;border-left:3px solid #99d9eb;padding-left:8px}
+.ex-site-code{border:0;border-radius:0;width:22px;font:22px/1 Consolas,monospace;color:#d4e7ee}
+.ex-site-button small{color:#a8bcc9;font-size:10px}.ex-site-button strong{font-size:12px;font-weight:500}
+.ex-window{padding:18px 0 14px;margin-bottom:14px;border-bottom:1px solid #334351}
+#lunar-explorer .ex-window p,#lunar-explorer .ex-sites label,.ex-window .ex-small-label,.ex-side-note{color:#a5b8c7;font-size:10px;line-height:1.65}
+.ex-window>strong{font-size:15px;color:#e2eaf0}
+#lunar-explorer .ex-sites select{background:#1a2c3a;border-color:#405361;color:#e2eaf0;min-height:36px}
+.ex-assumptions{margin:0 0 15px}.ex-assumptions h2{margin:0 0 10px}.ex-threshold{gap:2px}
+#lunar-explorer .ex-sites output{color:#d2e5ee}.ex-side-note{margin-top:16px}
+#lunar-explorer .ex-sites input[type=range]{accent-color:#8cb8cb}
+#lunar-explorer .ex-sites .ex-outline-button{width:100%;border-color:#526876;color:#d4e2eb;background:transparent;font-size:11px}
+.ex-workspace{margin:0 8px 0 0;padding:18px 22px 14px;border:0;border-radius:3px;background:#f3f6f7;gap:14px;grid-template-rows:auto minmax(390px,1fr) auto;align-content:stretch}
+.ex-question{gap:18px;min-height:63px;align-items:center}
+#lunar-explorer .ex-question h1{font-size:34px;font-weight:500;letter-spacing:-1.3px;margin:2px 0 4px;line-height:1.08}
+.ex-question .ex-small-label{font:9px Consolas,monospace;letter-spacing:1px;color:#526c7c}
+.ex-question p{font-size:11px;max-width:720px;line-height:1.5}
+#lunar-explorer .ex-question .ex-outline-button{font-size:11px;border-color:#afbdc6;border-radius:3px;min-height:38px}
+.ex-analysis-stage{display:grid;grid-template-columns:minmax(0,1fr) 264px;min-height:390px;background:#0b1015;border:1px solid #253b49;border-radius:4px;overflow:hidden}
+.ex-scene-wrap{min-height:390px;border-radius:0;overflow:hidden}
+#ex-scene{min-height:390px}
+.ex-scene-toolbar{gap:8px;top:12px;left:14px;right:14px}
+.ex-scene-tabs{margin-right:auto;gap:8px}
+#lunar-explorer .ex-scene-tabs button{font-size:11px}
+#lunar-explorer .ex-on-dark{font-size:9px;min-height:32px;padding:6px 8px}
+#lunar-explorer #ex-grid[aria-pressed=true]{color:#d8eaf0;border-color:#637c89;background:#1c303cc9}
+#lunar-explorer #ex-descend{background:#dcebf1;border-color:#c2d7e1;border-radius:3px;font-size:11px;color:#183445}
+.ex-scene-bottom{left:14px;right:14px;bottom:48px;gap:10px}.ex-scene-bottom strong{font-size:11px}
+#lunar-explorer .ex-render-note{left:14px;right:14px;font-size:9px;line-height:1.45;bottom:10px}
+.ex-observer{background:#13232f;border-left:1px solid #314550;color:#e2ebf0;padding:16px;min-width:0;display:flex;flex-direction:column}
+.ex-inspector-head{display:flex;justify-content:space-between;gap:8px;align-items:center;padding-bottom:12px;border-bottom:1px solid #314550}
+.ex-inspector-head .ex-small-label{font:9px Consolas,monospace;color:#9db2c2;white-space:nowrap}
+#ex-coordinate{font:10px Consolas,monospace;color:#c4d6e1;white-space:nowrap}
+.ex-reading-strip{grid-template-columns:1fr 1fr;gap:8px 12px;padding:12px 0 10px;border-color:#314550}
+.ex-reading-strip span{font-size:10px;color:#a5b8c7}.ex-reading-strip strong{font:29px/1.2 Consolas,monospace;margin:4px 0;color:#e8eff3}
+#ex-sun-value{color:#edc281}#ex-earth-value{color:#8ed1e6}.ex-reading-strip small{font-size:9px;color:#a5b8c7}
+.ex-reading-strip>div:nth-child(3){grid-column:1/-1;display:grid;grid-template-columns:1fr auto;align-items:center;gap:2px;margin-top:5px}
+.ex-reading-strip>div:nth-child(3)>strong{font-size:18px;grid-row:1/3;grid-column:2}
+.ex-direction-block{padding:11px 0 9px;border-bottom:1px solid #314550}
+.ex-section-line{display:flex;align-items:center;justify-content:space-between;gap:12px}
+#lunar-explorer .ex-section-line h2{font-size:11px;font-weight:500;line-height:1.5;margin:0}
+.ex-direction-block .ex-section-line>span{font:8px Consolas,monospace;color:#9db2c2}
+#ex-bearing-plot{display:block;width:100%;height:113px;margin-top:5px}
+#ex-bearing-plot text{fill:#9cb5c5;font:10px Consolas,monospace}
+.ex-compass-ring{fill:none;stroke:#39515f;stroke-width:1}.ex-compass-axis{fill:none;stroke:#2d4452;stroke-width:1}
+.ex-sun-line{fill:none;stroke:#c58c36;stroke-width:1.7;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round}
+.ex-earth-line{fill:none;stroke:#3b8bad;stroke-width:1.7;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round}
+#ex-bearing-plot .ex-sun-line{stroke:#edc281}#ex-bearing-plot .ex-earth-line{stroke:#8ed1e6}
+.ex-sun-dot{fill:#c58c36;stroke:#13232f;stroke-width:1}.ex-earth-dot{fill:#3b8bad;stroke:#13232f;stroke-width:1}
+#ex-bearing-plot .ex-sun-dot{fill:#edc281}#ex-bearing-plot .ex-earth-dot{fill:#8ed1e6}
+.ex-bearing-values{display:flex;justify-content:space-around;font-size:10px;color:#9db2c2}.ex-bearing-values strong{margin-left:5px;font:11px Consolas,monospace;color:#d6e6ef}
+#lunar-explorer .ex-direction-block p{font-size:9px;line-height:1.5;color:#9db2c2;margin:8px 0 0}
+.ex-observation-reason{padding-top:12px;margin-top:auto}
+.ex-observation-reason .ex-small-label{color:#9db2c2;font:9px Consolas,monospace;letter-spacing:.6px}
+#ex-verdict{display:block;color:#edc281;font-size:14px;font-weight:500;margin:5px 0}
+#ex-verdict[data-clear=true]{color:#a7d8c0}
+#lunar-explorer #ex-reason{font-size:10px;line-height:1.65;color:#c3d3de;margin:0}
+.ex-model-boundary{display:block;color:#9db2c2;font-size:9px;margin-top:9px;line-height:1.5}
+.ex-timeline{padding:0;min-width:0}.ex-timeline-head{margin-bottom:10px}.ex-timeline-head .ex-small-label{color:#526c7c;font:9px Consolas,monospace;letter-spacing:1px}
+.ex-timeline-head strong{font-size:12px}.ex-history{min-width:0}.ex-history .ex-section-line{margin-bottom:6px}
+.ex-chart-legend{display:flex;gap:16px;font-size:9px;color:#596d7a}.ex-chart-legend>span{display:flex;align-items:center;gap:5px}
+.ex-sun-key:before,.ex-earth-key:before{content:'';display:block;width:13px;height:2px;background:#95621b}.ex-earth-key:before{background:#216b87}
+.ex-history-plot{position:relative;height:100px;background:#e9eff2;border:1px solid #d7e1e6;border-radius:2px;overflow:hidden}
+#ex-history-chart{display:block;width:100%;height:100%;cursor:crosshair;outline-offset:-3px}
+#ex-history-chart:focus-visible{outline:2px solid #216b87}
+.ex-chart-zero{stroke:#bccbd3;stroke-width:1;fill:none}.ex-chart-threshold{stroke:#6c7f89;stroke-width:1;stroke-dasharray:5 4;fill:none}.ex-chart-cursor{stroke:#617985;stroke-width:1;stroke-dasharray:2 3;fill:none}
+.ex-history-plot>span{position:absolute;left:4px;font:8px Consolas,monospace;color:#526c7c;pointer-events:none}
+#ex-history-max{top:3px}#ex-history-min{bottom:3px}
+#lunar-explorer #ex-play{background:#1e4054;border-color:#1e4054;color:#f1f6f8;min-height:36px}
+#lunar-explorer #ex-play:hover{background:#295c76}
+#lunar-explorer input[type=range]{accent-color:#27566f}
+.ex-lanes{margin-top:9px;gap:4px 10px;grid-template-columns:125px minmax(0,1fr)}
+.ex-lanes>span{font-size:9px;color:#526c7c}.ex-lane{height:7px;border-color:#c3d1d9;background:#e0e8ec;border-radius:0}
+.ex-lane i{background:#b8893f}#ex-earth-lane i{background:#458dab}#ex-both-lane i{background:#577b6a}.ex-lane b{background:#234d63}
+#lunar-explorer .ex-timeline-note{color:#526c7c;font-size:9px;line-height:1.5;margin-top:7px}
+.ex-track-labels{font-size:9px;color:#526c7c}
+.ex-footer{color:#9db2c2;font-size:9px;background:#101d29;padding:0 16px}
+.ex-pinned{background:#e6eef3;border-color:#b8cdd9;border-radius:3px}
+#ex-method{--ex-ink:#182733;--ex-bg:#f3f6f7;color:#182733;background:#f3f6f7}
+@media(min-width:1600px){.ex-body{grid-template-columns:230px minmax(0,1fr)}.ex-analysis-stage{grid-template-columns:minmax(0,1fr) 290px}.ex-observer{padding:20px}.ex-workspace{padding:22px 28px}.ex-reading-strip strong{font-size:34px}#ex-bearing-plot{height:140px}}
+@media(max-width:1180px){.ex-body{grid-template-columns:184px minmax(0,1fr)}.ex-workspace{padding:14px;gap:12px}.ex-analysis-stage{grid-template-columns:minmax(0,1fr) 234px}.ex-observer{padding:12px}.ex-inspector-head{display:block}.ex-inspector-head #ex-coordinate{display:block;margin-top:4px}.ex-scene-toolbar{flex-wrap:wrap}.ex-scene-tabs{width:100%}.ex-scene-toolbar>#ex-reset-camera{margin-left:auto}.ex-sky-actions{top:100px}.ex-question .ex-small-label{font-size:8px}.ex-question p{font-size:10px}.ex-question h1{font-size:30px}.ex-scene-bottom{display:block}.ex-scene-bottom>div{display:inline-block;margin-bottom:10px}.ex-scene-bottom>#ex-descend{display:block}}
+@media(max-width:900px){.ex-analysis-stage{grid-template-columns:minmax(0,1fr) 212px}.ex-observer{padding:10px}.ex-reading-strip strong{font-size:24px}.ex-observation-reason{padding-top:9px}.ex-question #ex-save{font-size:10px;padding:7px}.ex-chart-legend{gap:9px}.ex-workspace{grid-template-rows:auto minmax(440px,1fr) auto}#lunar-explorer .ex-header{padding:8px 18px;gap:18px}.ex-build{display:none}.ex-header #ex-evidence{margin-left:auto}}
+@media(max-width:760px){#lunar-explorer{grid-template-rows:60px minmax(0,1fr) 26px}.ex-body{display:block;overflow:auto}#lunar-explorer .ex-sites{padding:12px 14px}.ex-assumptions{margin:8px 0 10px}.ex-assumptions h2{font-size:10px!important;margin-bottom:4px}.ex-threshold{grid-template-columns:1fr 1fr;gap:2px 14px}.ex-threshold>label:nth-of-type(2){grid-column:2;grid-row:1}.ex-threshold>input:nth-of-type(1){grid-column:1;grid-row:2}.ex-threshold>input:nth-of-type(2){grid-column:2;grid-row:2}#lunar-explorer .ex-sites .ex-outline-button{min-height:40px}.ex-window{padding:8px 0;margin-bottom:0}.ex-window>strong{font-size:11px}.ex-window select{width:125px!important}#lunar-explorer .ex-site-button{padding:8px 6px;gap:4px;min-height:50px}#lunar-explorer .ex-site-button[aria-pressed=true]{padding-left:4px}.ex-site-code{font-size:17px;width:18px;flex-shrink:0}.ex-site-button strong{font-size:10px}.ex-site-button small{font-size:8px}.ex-workspace{display:flex;height:auto;margin:0 8px;padding:12px;gap:14px;border-radius:3px;overflow:visible}.ex-question{min-height:58px;gap:10px}#lunar-explorer .ex-question h1{font-size:28px}.ex-question #ex-save{white-space:normal;max-width:92px;flex-shrink:0}.ex-analysis-stage{display:flex;flex-direction:column;min-height:0;flex-shrink:0}.ex-scene-wrap,#ex-scene{height:370px;min-height:370px}.ex-scene-bottom>div{max-width:100%}.ex-observer{border-left:0;border-top:1px solid #314550;padding:14px;display:grid;grid-template-columns:1fr 1fr;gap:10px 14px}.ex-inspector-head{grid-column:1/-1;display:flex;padding-bottom:8px}.ex-inspector-head #ex-coordinate{display:inline;margin:0}.ex-reading-strip{border:0;margin:0;padding:0;grid-template-columns:1fr}.ex-reading-strip>div:nth-child(3){grid-column:auto;display:block;margin-top:0}.ex-reading-strip>div:nth-child(3)>strong{font-size:20px}.ex-reading-strip strong{font-size:26px}#ex-measures{grid-column:1;grid-row:2}.ex-direction-block{grid-column:2;grid-row:2;border:0;padding:0;min-width:0}.ex-direction-block .ex-section-line{display:block}.ex-direction-block .ex-section-line>span{display:none}#ex-bearing-plot{height:130px}.ex-bearing-values{display:block;text-align:center}.ex-bearing-values>span{display:inline-block;margin:0 3px;font-size:9px}.ex-observation-reason{grid-column:1/-1;margin:0;padding-top:10px;border-top:1px solid #314550}.ex-model-boundary{margin-top:5px}.ex-chart-legend{gap:9px;font-size:8px}.ex-history .ex-section-line{display:block}.ex-chart-legend{margin-top:3px}.ex-timeline-head{gap:8px}.ex-timeline-head strong{font-size:11px}.ex-playback{gap:2px}#lunar-explorer #ex-play{min-height:44px}.ex-history-plot{height:120px}.ex-footer{font-size:8px}.ex-lanes{grid-template-columns:105px minmax(0,1fr)}.ex-sky-actions{top:100px}.ex-sky-actions span{font-size:8px}.ex-scene-toolbar>.ex-scene-tabs{width:100%}}
+.ex-workspace{grid-template-rows:auto minmax(min-content,1fr) auto;scrollbar-width:thin}
+.ex-history .ex-sun-line{stroke:#95621b}.ex-history .ex-earth-line{stroke:#216b87}
+.ex-history .ex-sun-dot{fill:#95621b;stroke:#f3f6f7}.ex-history .ex-earth-dot{fill:#216b87;stroke:#f3f6f7}
+@media(min-width:761px){.ex-inspector-head{padding-bottom:8px}.ex-reading-strip{padding:9px 0 8px;gap:5px 10px}.ex-reading-strip>div:nth-child(3)>strong{grid-row:1}.ex-direction-block{padding:8px 0}.ex-direction-block #ex-bearing-plot{height:82px}.ex-observation-reason{padding-top:9px}#lunar-explorer #ex-reason{line-height:1.5}.ex-model-boundary{margin-top:6px}.ex-history-plot{height:84px}}
+
+/* Keep the restored workspace switch available on narrow screens. */
+#lunar-explorer .ex-header #ex-legacy{display:inline-flex;font-size:11px;white-space:nowrap}
+@media(max-width:760px){#lunar-explorer .ex-header{height:auto;flex-wrap:wrap;gap:6px 14px}#lunar-explorer{grid-template-rows:auto minmax(0,1fr) 28px}}

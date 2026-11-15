@@ -1,0 +1,12 @@
+const assert=require('node:assert/strict');
+const {evaluate,parseCSV,fixture}=require('../src/model.js');
+const header='time_utc,sun_az,sun_el,earth_az,earth_el\n';
+const rows=parseCSV(header+'2026-11-14T00:00:00Z,0,1,180,-1\n2026-11-14T01:00:00Z,0,-1,180,2\n2026-11-14T04:00:00Z,0,1,180,2');
+const result=evaluate(rows,0,0);assert.equal(result.total,4);assert.equal(result.sun,1);assert.equal(result.earth,3);assert.equal(result.both,0);assert.equal(result.longest,1);
+assert.equal(evaluate(rows,2,0).earth,0);assert.equal(evaluate(rows,0,2).earth,0);
+assert.equal(evaluate(rows.map(r=>({...r,earth_el:-1})),0,0).longest,4);
+for(const csv of [header+'2026-11-14T00:00:00Z,0,1,180,2\n2026-11-14T00:00:00Z,0,1,180,2',header+'2026-11-14T00:00:00,0,1,180,2\n2026-11-15T00:00:00Z,0,1,180,2',header+'2026-11-14T00:00:00Z,0,,180,2\n2026-11-15T00:00:00Z,0,1,180,2',header+'2026-11-14T00:00:00Z,360,1,180,2\n2026-11-15T00:00:00Z,0,1,180,2']) assert.throws(()=>parseCSV(csv));
+assert.equal(evaluate(fixture(Date.UTC(2026,10,14),0),0,0).total,72);
+assert.throws(()=>parseCSV(header+'2026-02-30T00:00:00Z,0,1,180,2\n2026-03-03T00:00:00Z,0,1,180,2'),/calendar/i);
+assert.throws(()=>parseCSV(header+'2026-11-14T00:00:00.0001Z,0,1,180,2\n2026-11-15T00:00:00Z,0,1,180,2'),/timestamp/i);
+console.log('Passed: irregular-interval weighting, threshold boundary, margin, continuous outage, CSV validation and fixture duration.');

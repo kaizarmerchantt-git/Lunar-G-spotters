@@ -1,0 +1,36 @@
+Lunar surface texture
+Downloaded: 28 October 2026
+Source: NASA/Goddard Space Flight Center Scientific Visualization Studio, CGI Moon Kit, visualization 4720; visualizations by Ernie Wright.
+Page: https://svs.gsfc.nasa.gov/4720/
+Asset: https://svs.gsfc.nasa.gov/vis/a000000/a004700/a004720/lroc_color_2k.jpg
+File: lroc_color_2k.jpg, 457942 bytes, 2048 x 1024.
+SHA-256: F7130A1822681FA7512D7DCFD40DB8C10B9BA4F06777910348698260ED7A2170
+Basis: Lunar Reconnaissance Orbiter imagery; color map centered on longitude 0 degrees.
+Used only for visual context. NASA notes that the maps are optimized for aesthetics; scientific applications should use underlying source data. Polar infill and visualization processing must not be treated as resolved terrain or lighting information. No height map or horizon obstruction is derived from this JPEG. Globe uses fixed illustrative camera-space lighting, not modeled sunlight. No endorsement implied.
+
+Atlas display shading
+Added: 31 October 2026
+File: lola-display-bump.jpg (NASA asset ldem_3_8bit.jpg, 1024 x 512)
+Source: NASA Scientific Visualization Studio CGI Moon Kit, visualizations by Ernie Wright.
+Page: https://svs.gsfc.nasa.gov/4720/
+Asset: https://svs.gsfc.nasa.gov/vis/a000000/a004700/a004720/ldem_3_8bit.jpg
+SHA-256: 6D93F887E7D8BEDFE35AB89BA785E5E3CA12381BD092A5E6ABE2C707DDA8BB98
+Basis: LRO LOLA global elevation visualization. Applied only as a small display bump
+in Mission atlas. It does not displace the reference sphere or calculate local
+terrain horizons, shadows, slopes, clearance, power or communications. Lighting
+is camera-relative illustration. Do not treat the 8-bit display image as a
+scientifically validated terrain model. Landed mission points retain the separate
+NSSDCA source coordinate precision; they are not independently surveyed here.
+Rotating Earth system texture
+Added: 7 November 2026
+File: earth-blue-marble-map.png, 2048 x 1024, 1511379 bytes.
+Source: NASA/Goddard Space Flight Center Scientific Visualization Studio.
+Page: https://svs.gsfc.nasa.gov/2915/
+Asset: https://svs.gsfc.nasa.gov/vis/a000000/a002900/a002915/bluemarble-2048.png
+SHA-256: AE6214B078ED0864C96F74BCB10AE3021F6EB116F8059797EFE0FA9EA8B89D35
+Credit: NASA/GSFC/SVS; Blue Marble data courtesy of Reto Stockli and NASA Earth
+Observatory; visualization Eric Sokolowsky. Historical global composite,
+not current weather or cloud motion. Used as a spherical display texture in
+the system renderer with approximate attitude and calculated display lighting.
+The fixed Sun disk is procedural artwork, not an observation of solar activity.
+

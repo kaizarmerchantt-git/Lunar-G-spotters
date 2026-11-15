@@ -1,0 +1,17 @@
+'use strict';
+const assert=require('node:assert/strict'),fs=require('node:fs');
+const T=require('../src/observation-transfer.js'),M=require('../src/model.js');
+const rows=M.parseCSV(fs.readFileSync('test-data/NASA-IM2-coordinate-2026-11-14.csv','utf8'));
+const input={name:'IM-2 coordinate study',provenance:'NASA/JPL Horizons; airless observer; height 0 km; UTC, degrees.',site:{lat:-84.7906,lon:29.1957},samples:rows,mode:'nasa'};
+const encoded=T.encode(input),decoded=T.decode(encoded);
+const example=T.decode(fs.readFileSync('test-data/NASA-IM2-2026-11-14.selene.json','utf8'));assert.deepEqual(example.rows,rows);assert.deepEqual(example.site,input.site);
+assert.equal(decoded.name,input.name);assert.deepEqual(decoded.site,input.site);assert.deepEqual(decoded.rows,rows);assert.equal(decoded.category,'imported','file labels cannot confer NASA verification');
+const result=M.evaluate(decoded.rows,0,0);assert.equal(result.both,68);assert.equal(result.sun,72);
+const preview=T.describe(decoded);assert.match(preview,/73 samples/);assert.match(preview,/84.7906/);assert.match(preview,/user supplied/i);
+assert.equal(T.decode(T.encode({...input,site:null})).site,null,'no location is invented');
+for(const patch of [{schema:2},{kind:'selene.notebook'},{conventions:{time:'local'}},{site:{lat:95,lon:0}},{source:'unverifiable',rows:[rows[1],rows[0]]}])assert.throws(()=>T.decode(JSON.stringify({...JSON.parse(encoded),...patch})));
+assert.throws(()=>T.decode('{}'));assert.throws(()=>T.decode('x'.repeat(2000001)),/2 MB/);
+const frozen=JSON.stringify(input);T.encode(input);assert.equal(JSON.stringify(input),frozen,'export does not mutate the active observation');
+assert.throws(()=>T.prepareCSV({name:'bad',provenance:'source',text:'bad csv',site:input.site}));
+assert.throws(()=>T.prepareCSV({name:'bad',provenance:'source',text:fs.readFileSync('test-data/NASA-IM2-coordinate-2026-11-14.csv','utf8'),site:{lat:-84.7906,lon:null}}),/coordinate/i);
+console.log('Passed: observation-file round trips preserve location, source and values; malformed files and conventions are rejected; source claims stay user supplied.');

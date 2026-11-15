@@ -1,0 +1,69 @@
+/* An explicitly sized viewport prevents canvas drawing-buffer dimensions from
+   contributing to grid intrinsic height during ResizeObserver updates. */
+.ex-workspace{display:flex;flex-direction:column;gap:18px;align-content:initial}
+.ex-workspace>*{flex-shrink:0}
+.ex-analysis-stage{height:440px;min-height:0;grid-template-rows:minmax(0,1fr)}
+.ex-scene-wrap{min-height:0;height:100%}
+#ex-scene{position:absolute;inset:0;width:100%;height:100%;min-height:0}
+.ex-observer{min-height:0;overflow:auto;scrollbar-width:thin}
+.ex-observer .ex-direction-block{padding:8px 0 6px}
+.ex-observer #ex-bearing-plot{height:90px}
+.ex-observer .ex-observation-reason{padding-top:8px}
+.ex-observer .ex-reading-strip{padding:10px 0 8px}
+.ex-observer .ex-reading-strip>div:nth-child(3){display:none}
+.ex-observer .ex-inspector-head{padding-bottom:8px}
+.ex-question{min-height:62px;flex-wrap:wrap}
+.ex-question>div:first-child{flex:1;min-width:220px}
+.ex-question p{font-size:12px}
+.study-window{display:flex;gap:25px;min-width:0}
+.study-window>div{display:flex;flex-direction:column;gap:4px}
+.study-window span{font-size:11px;color:#526370}
+.study-window strong{font:500 25px/1.2 'Segoe UI',sans-serif;font-variant-numeric:tabular-nums;letter-spacing:-.6px;color:#182733}
+.ex-site-button small{white-space:pre-line;line-height:1.55!important}
+.study-mobile-toggle{display:none!important}
+.wb-case h2{min-height:2.5em}
+#study-sun{color:#805615}#study-earth{color:#216b87}
+.study-panel{padding:22px 0 4px;border-top:1px solid #cad6dd;min-width:0}
+.study-heading{display:flex;gap:20px;justify-content:space-between;align-items:center;margin-bottom:16px}
+#lunar-explorer .study-heading h2{font-size:21px;letter-spacing:-.6px;font-weight:500;margin:0 0 6px;line-height:1.25}
+#lunar-explorer .study-heading p{margin:0;font-size:12px;color:#526370;line-height:1.6}
+#lunar-explorer #study-limiting{background:#e3ebef;color:#244a60;border:1px solid #afc1cb;font-size:12px;min-height:40px;white-space:nowrap}
+#lunar-explorer #study-limiting:hover{background:#d2e1e9}
+.study-body{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(250px,1fr);gap:28px;align-items:start}
+.study-plot-area{min-width:0}.study-legend{display:flex;align-items:center;flex-wrap:wrap;gap:8px 18px;font-size:11px;color:#465d6b}
+.study-legend>span{display:flex;gap:6px;align-items:center}.study-legend>#study-cutoff{margin-left:auto}
+.study-both-key:before{content:'';width:15px;border-top:3px dotted #344c57}
+#study-chart{width:100%;height:190px;display:block;margin-top:6px;cursor:crosshair;touch-action:manipulation}
+#study-chart text{fill:#526370;font:11px 'Segoe UI',sans-serif}
+#study-chart path{fill:none;vector-effect:non-scaling-stroke}
+.study-grid{stroke:#d8e1e6;stroke-width:1}.study-sun-path{stroke:#95621b;stroke-width:2.5}.study-earth-path{stroke:#216b87;stroke-width:2.5;stroke-dasharray:6 4}.study-both-path{stroke:#344c57;stroke-width:2;stroke-dasharray:1 5;stroke-linecap:round}.study-cursor{stroke:#537382;stroke-width:1;stroke-dasharray:3 4}#study-point{fill:#95621b;stroke:#f3f6f7;stroke-width:2}
+#lunar-explorer #study-method{font-size:11px;line-height:1.6;color:#526370;margin:4px 0 0}
+.study-answer{padding:0 0 0 22px;border-left:1px solid #cad6dd}
+.study-answer>span{font-size:11px;color:#526370}.study-answer>strong{display:block;font-size:20px;font-weight:500;letter-spacing:-.4px;margin:6px 0 10px;line-height:1.3}
+#lunar-explorer .study-answer p{font-size:12px;line-height:1.7;color:#425965;margin:10px 0}
+.study-answer details{font-size:12px}.study-answer summary{cursor:pointer;min-height:32px;color:#244a60}
+.study-table-wrap{max-height:230px;overflow:auto}.study-table-wrap table{width:100%;border-collapse:collapse;font-size:11px;font-variant-numeric:tabular-nums}.study-table-wrap th,.study-table-wrap td{text-align:right;padding:6px;border-bottom:1px solid #d8e1e6}.study-table-wrap caption{text-align:left;padding:6px 0}
+.study-event{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:10px 13px;background:#e4edf1;margin:0 0 12px}.study-event strong{display:block;font-size:12px;font-weight:600;color:#294b5c}.study-event span{display:block;font-size:11px;line-height:1.5;color:#526370;margin-top:3px}
+#lunar-explorer #study-next-event{font-size:11px;background:transparent;border:1px solid #a6bdc9;color:#244a60;min-height:34px;white-space:nowrap}
+#lunar-explorer #study-next-event:disabled{opacity:.6;cursor:default}
+#study-chart:focus-visible,#lunar-explorer .study-panel button:focus-visible,.study-answer summary:focus-visible{outline:2px solid #216b87;outline-offset:3px}
+.ex-history-plot{height:110px}.ex-track-labels,.ex-lanes>span{font-size:10px}
+#lunar-explorer .ex-timeline-note{font-size:10px}.ex-history .ex-section-line h2{font-size:13px!important}
+.ex-observer .ex-reading-strip span,.ex-observer .ex-reading-strip small{font-size:11px}
+#lunar-explorer #ex-reason{font-size:11px}.ex-model-boundary{font-size:10px}
+.ex-inspector-head .ex-small-label{font:11px 'Segoe UI',sans-serif;letter-spacing:0;text-transform:none}
+.ex-trajectory-key{position:absolute;right:14px;top:66px;z-index:2;color:#b4c8d2;font-size:10px;pointer-events:none}
+#lunar-explorer #observer-open{background:#dbe9ee;color:#153a4e;border-color:#b2ccd7;min-height:40px;margin-bottom:4px;font-size:12px}
+#lunar-explorer #observer-open:hover{background:#f0f6f8}
+.observer-fields{display:grid;grid-template-columns:1fr 1fr;gap:16px;min-width:0}.observer-fields>div{min-width:0}.observer-fields small{font-size:11px;color:#526370}
+#lunar-explorer .observer-note{font-size:12px;line-height:1.7;color:#526370}
+#observer-status{color:#23556e;font-size:12px;line-height:1.6}#observer-error{color:#9c3429;font-size:13px;line-height:1.6}
+.observer-source-links{display:flex;gap:18px;flex-wrap:wrap}.observer-source-links a{color:#216b87;text-decoration:underline;font-size:13px}
+#observer-dialog input,#observer-dialog select{min-width:0;width:100%;min-height:42px;font-size:14px}
+@media(max-width:400px){.observer-fields{gap:10px}.observer-fields label{font-size:11px!important}#observer-dialog input,#observer-dialog select{font-size:12px}}
+@media(max-width:760px){#ex-site-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));max-height:170px;overflow:auto}.study-event{align-items:flex-start;flex-direction:column;gap:8px}.ex-site-button strong,.ex-site-button small{overflow-wrap:anywhere}#observer-open{margin-top:8px}}
+@media(max-width:760px){#lunar-explorer .study-mobile-toggle{display:flex!important;width:100%;flex-direction:column;align-items:flex-start;gap:5px;min-height:52px;padding:10px 12px;background:#203442;color:#e1edf2;border:1px solid #526a79;text-align:left;font-size:12px}.study-mobile-toggle>span:last-child{color:#bed0da;font-size:11px}.ex-sites:not(.study-options-open)>:not(.study-mobile-toggle){display:none!important}.ex-sites.study-options-open .study-mobile-toggle{margin-bottom:12px}.wb-case h2{min-height:0}}
+@media(min-width:1181px) and (min-height:850px){.ex-analysis-stage{height:420px}}
+@media(max-width:1180px){.study-window{gap:16px}.study-window strong{font-size:22px}.study-window span{font-size:10px}.ex-analysis-stage{height:460px}.study-body{grid-template-columns:minmax(0,1fr)}.study-answer{border-left:0;border-top:1px solid #cad6dd;padding:16px 0 0}.study-legend>#study-cutoff{margin-left:0}.ex-trajectory-key{top:142px;left:14px;right:auto}}
+@media(max-width:900px){.study-window{order:3;width:100%;padding:7px 0 0;gap:30px}.study-window>div{flex:1}.ex-question>div:first-child{min-width:160px}.ex-analysis-stage{height:470px}.study-heading{align-items:flex-start;flex-direction:column;gap:12px}}
+@media(max-width:760px){.ex-workspace{display:flex;gap:16px}.ex-analysis-stage{height:auto;min-height:0;display:flex}.ex-scene-wrap{height:360px;min-height:360px}#ex-scene{height:100%;min-height:0}.ex-observer{overflow:visible}.study-window{gap:14px}.study-window span{font-size:10px}.study-window strong{font-size:24px}.ex-question>div:first-child{min-width:130px}#lunar-explorer .study-heading h2{font-size:23px;max-width:290px}.study-body{gap:18px}#study-chart{height:165px}.study-panel{padding-top:18px}.study-legend{gap:9px 15px}.study-legend>#study-cutoff{width:100%}.ex-trajectory-key{font-size:10px;top:143px}.ex-scene-bottom{bottom:56px}.ex-history-plot{height:125px}}

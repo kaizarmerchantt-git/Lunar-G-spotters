@@ -1,0 +1,23 @@
+{
+  "name": "Observer \u00b7 2026-11-14",
+  "lat": -84.7906,
+  "lon": 29.1957,
+  "urls": [
+    "https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=%2710%27&OBJ_DATA=%27NO%27&MAKE_EPHEM=%27YES%27&EPHEM_TYPE=%27OBSERVER%27&CENTER=%27coord%40301%27&COORD_TYPE=%27GEODETIC%27&SITE_COORD=%2729.1957%2C-84.7906%2C0%27&START_TIME=%272026-11-14+00%3A00%27&STOP_TIME=%272026-11-17+00%3A00%27&STEP_SIZE=%2760+min%27&QUANTITIES=%274%27&CSV_FORMAT=%27YES%27&TIME_DIGITS=%27SECONDS%27&TIME_TYPE=%27UT%27&APPARENT=%27AIRLESS%27&EXTRA_PREC=%27YES%27",
+    "https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=%27399%27&OBJ_DATA=%27NO%27&MAKE_EPHEM=%27YES%27&EPHEM_TYPE=%27OBSERVER%27&CENTER=%27coord%40301%27&COORD_TYPE=%27GEODETIC%27&SITE_COORD=%2729.1957%2C-84.7906%2C0%27&START_TIME=%272026-11-14+00%3A00%27&STOP_TIME=%272026-11-17+00%3A00%27&STEP_SIZE=%2760+min%27&QUANTITIES=%274%27&CSV_FORMAT=%27YES%27&TIME_DIGITS=%27SECONDS%27&TIME_TYPE=%27UT%27&APPARENT=%27AIRLESS%27&EXTRA_PREC=%27YES%27"
+  ],
+  "raw_sha256": {
+    "sun": "60908911fdec737a56bb64cc2b0ad8d322485ece6119606f43ed2b7338e7b7f3",
+    "earth": "889b57d549c56f3e36eeacdd374e0c719a0f5701e38073555347fb42a9b7d0d4"
+  },
+  "retrieved_utc": "2026-10-31T16:06:30.169Z",
+  "source": "NASA/JPL Horizons live query; target, observer, frame, epochs and angle ranges checked.",
+  "provider": "NASA/JPL Horizons",
+  "conventions": "Apparent airless body-center azimuth/elevation; lunar geodetic coordinates, east-positive longitude, altitude 0 km above the reference surface. UT (UTC for these dates). No terrain screening.",
+  "csv_sha256": "e07e840a13af15928795af11aa12b2c2fe96f70028519e8a376f3e6468b50172",
+  "note": "Hypothetical November 2026 observation at the published historical IM-2 landing coordinate; not IM-2 mission telemetry or a reconstruction of its March 2025 mission.",
+  "raw_files": {
+    "sun": "NASA-IM2-sun-raw.json",
+    "earth": "NASA-IM2-earth-raw.json"
+  }
+}

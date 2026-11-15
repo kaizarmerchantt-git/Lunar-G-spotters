@@ -1,0 +1,10 @@
+{
+  "name": "NASA Blue Marble 2002",
+  "source_page": "https://science.nasa.gov/resource/blue-marble-2002/",
+  "download_url": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/solar/2023/09/1/1-bluemarble_west-1.jpg",
+  "credit": "NASA Earth Observatory; Terra/MODIS composite",
+  "retrieved_date": "2026-10-28",
+  "sha256": "9824d30eca98594e73fd276388108ec1ee1ab494038e730fd378efc1aae4ffa6",
+  "bytes": 105654,
+  "use": "Historical hemisphere photograph in illustrative body renderer. No live Earth attitude, cloud or lighting inference."
+}

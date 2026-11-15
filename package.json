@@ -1,0 +1,29 @@
+{
+  "name": "selene",
+  "version": "1.0.0",
+  "description": "SELENE: Mission Atlas and Lunar Observation Analysis - NASA Space Apps Challenge 2026",
+  "private": true,
+  "main": "server/server.cjs",
+  "scripts": {
+    "start": "node server/server.cjs",
+    "test": "node tests/verify-all.cjs",
+    "test:terrain": "node tests/verify-all.cjs --terrain-source",
+    "build:html": "node server/build-html.cjs"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "nasa",
+    "space-apps-2026",
+    "lunar-landing-site-navigator",
+    "moon",
+    "ephemeris",
+    "horizons",
+    "clps",
+    "threejs",
+    "lola-dem"
+  ],
+  "author": "",
+  "license": "MIT"
+}

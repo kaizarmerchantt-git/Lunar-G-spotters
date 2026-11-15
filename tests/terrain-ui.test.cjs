@@ -1,0 +1,34 @@
+'use strict';
+const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict');
+class Element{constructor(){this.textContent='';this.checked=true;}setAttribute(){}append(){}after(){}replaceChildren(){}click(){}scrollIntoView(){}}
+const elements=new Map(),listeners=new Map(),get=id=>{if(!elements.has(id))elements.set(id,new Element());return elements.get(id);};
+const document={getElementById:get,createElement:()=>new Element(),querySelector:()=>new Element(),addEventListener:(n,f)=>listeners.set(n,f),dispatchEvent(){}};
+const rows=[0,1,2].map(h=>({time:h*3600000,sun_az:0,earth_az:90,sun_el:20,earth_el:20}));
+const state={name:'Regression fixture',mode:'imported',site:{lat:-89.5,lon:0},geometry:rows,samples:rows,index:0,horizon:0,margin:0,comparisons:[]};
+const window={SeleneTerrain:require('../src/terrain-model.js'),LunarModel:require('../src/model.js'),SeleneResources:require('../src/resource-model.js'),SeleneObservation:state};
+const bundle=JSON.parse(fs.readFileSync('data/terrain-horizons.json'));
+const TerrainData=require('../src/terrain-data.js');let finishCustom;
+window.SeleneTerrainKey=TerrainData.key;
+window.SeleneTerrainData=new TerrainData(async(url)=>url==='data/terrain-horizons.json'?{ok:true,json:async()=>bundle}:new Promise(resolve=>finishCustom=resolve),window.SeleneTerrain,require('../src/rehearsal-model.js'));
+const context={window,document,fetch:async()=>({ok:true,json:async()=>bundle}),Event:class{},Intl,console,setTimeout,Blob,URL};
+vm.runInNewContext(fs.readFileSync('src/terrain-ui.js','utf8'),context);
+(async()=>{
+ await new Promise(setImmediate);
+ assert.equal(get('terrain-sun').textContent,'2 h');
+ const update=s=>listeners.get('observation-change')({detail:s});
+ update({...state,site:null});assert.equal(window.SeleneTerrainView.result,null);assert.equal(get('terrain-results').hidden,true);
+ update(state);assert.equal(get('terrain-sun').textContent,'2 h');assert.ok(window.SeleneTerrainView.result);assert.equal(get('terrain-results').hidden,false);
+ update({...state,site:{lat:-89.5001,lon:0}});assert.equal(window.SeleneTerrainView.profile,null);
+ await new Promise(setImmediate);
+ assert.match(get('terrain-status').textContent,/Calculating/);
+ update(state);
+ finishCustom({ok:true,json:async()=>({bundle:{...bundle,profiles:[{...bundle.profiles[0],lat:-89.5001}]}})});
+ await new Promise(setImmediate);
+ assert.equal(window.SeleneTerrainView.profile.lat,-89.5,'Late custom response must not replace current terrain');
+ update({...state,site:{lat:-89.5001,lon:0}});assert.equal(window.SeleneTerrainView.profile.lat,-89.5001);
+ update({...state,horizon:25});assert.equal(get('terrain-sun').textContent,'0 h');
+ update(state);assert.equal(get('terrain-sun').textContent,'2 h');
+ update({...state,comparisons:[{name:'short',geometry:rows},{name:'long',geometry:rows.map(r=>({...r,time:r.time*2}))}]});
+ assert.match(get('terrain-comparison-note').textContent,/Different UTC windows/);
+ console.log('Terrain UI: no-location import, exact-site mismatch, same-window restoration and assumption invalidation passed.');
+})().catch(e=>{console.error(e);process.exitCode=1;});
