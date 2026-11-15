@@ -134,3 +134,6 @@ Note: `LDEM_80S_80M.IMG` exceeds GitHub's 100 MB per-file limit and is listed in
 ## License
 
 Released under the [MIT License](LICENSE).
+
+
+#contributors; ADITYA HALORNEKAR; DEV KANWAR; HARSH JOSHI; KAIZAR MERCHANT; PARAM TIWARI; PRASHANT MAURYA.
