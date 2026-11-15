@@ -3,6 +3,8 @@
 **NASA Space Apps Challenge 2026: Lunar Landing Site Navigator**  
 **Team: Lunar G-Spotters**
 
+**Live demo: https://kaizarmerchantt-git.github.io/Lunar-G-spotters/**
+
 ### Team Contributors
 * **ADITYA HALORNEKAR**
 * **DEV KANWAR**
@@ -49,10 +51,49 @@ Terrain completely rewrites your mission timeline, and SELENE shows you the exac
 
 ## Quick Start
 
-### Option 1: Double-Click (Offline Standalone)
-No installation required. Double-click `SELENE.html` or `index.html` in your browser. The bundled offline reference datasets, 3D globe, and terrain profiles will work immediately.
+Pick the option that matches what you need:
 
-### Option 2: Run the Local Server (For Live NASA Queries & Custom DEM Extraction)
+| Option | Install needed | Live NASA queries | Custom DEM extraction |
+|---|---|---|---|
+| 1. Online preview | None | No | No |
+| 2. Offline standalone | Git or ZIP download | No | No |
+| 3. Local server | Node.js 18+ | Yes | Yes (with DEM file) |
+
+### Option 1: Try It Online (No Download)
+
+Open the hosted version in your browser:
+
+**https://kaizarmerchantt-git.github.io/Lunar-G-spotters/**
+
+The hosted preview is a static site. It runs on the bundled offline reference datasets (3D globe, mission atlas, reference terrain profiles). Live NASA Horizons queries and custom DEM extraction require the local server (Option 3).
+
+### Get the Code (Required for Options 2 and 3)
+
+**Clone the repository** (first time):
+
+```bash
+git clone https://github.com/kaizarmerchantt-git/Lunar-G-spotters.git
+cd Lunar-G-spotters
+```
+
+**Pull the latest changes** (to update an existing clone):
+
+```bash
+cd Lunar-G-spotters
+git pull origin main
+```
+
+If your default branch is not `main`, run `git branch --show-current` and use that name instead.
+
+**No Git?** Download the ZIP from the repository page (**Code → Download ZIP**) and extract it.
+
+Note: `git pull` does not fetch the 115 MB LOLA DEM raster (excluded via `.gitignore`). See [Custom Terrain DEM Setup](#custom-terrain-dem-setup-optional).
+
+### Option 2: Double-Click (Offline Standalone)
+
+No installation required beyond the downloaded files. Double-click `SELENE.html` or `index.html` in your browser. The bundled offline reference datasets, 3D globe, and terrain profiles will work immediately.
+
+### Option 3: Run the Local Server (For Live NASA Queries & Custom DEM Extraction)
 
 **Prerequisites**: Node.js v18.0.0 or newer. No `npm install` needed. All vendor libraries (Three.js 0.186.1) and microservices use local files and the Node standard library.
 
@@ -62,7 +103,7 @@ Double-click `Start-SELENE.bat`, or run in PowerShell:
 .\Start-SELENE.ps1
 ```
 
-**Using Node / npm**:
+**Using Node / npm** (macOS, Linux, Windows):
 ```bash
 npm start
 # or:
@@ -99,7 +140,7 @@ python tools/test-rehearsal.py
 ## Project Structure
 
 ```
-selene/
+Lunar-G-spotters/
 ├── src/                      # Frontend JavaScript modules
 │   ├── app.js                # Core app controller and dataset loader
 │   ├── explorer-math.js      # Orthonormal lunar reference frames and vector projection
